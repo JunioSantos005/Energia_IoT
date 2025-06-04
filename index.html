@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto IOT</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span>EnergiaIoT</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#funcionalidades">Funcionalidades</a></li>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="https://wa.me/5581981828482?text=Olá!%20Já%20estou%20utilizando%20o%20dispositivo%20EnergiaIoT%20e%20preciso%20de%20suporte%20relacionado%20ao%20monitoramento%20do%20consumo%20no%20site." target="_blank">
+Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+  <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Monitoramento Inteligente de Energia</h1>
+            <p>Controle, acompanhe e economize energia com nossa solução IoT inovadora. Tenha dados em tempo real e tome decisões baseadas em informações precisas.</p>
+            <a href="#dashboard" class="btn">Ver Dashboard</a>
+        </div>
+    </section>
+
+    <section class="features" id="funcionalidades">
+        <div class="container">
+            <h2 class="section-title">Funcionalidades</h2>
+            <div class="features-container">
+
+                <a href="#dashboard" class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Monitoramento em Tempo Real</h3>
+                    <p>Acompanhe o consumo de energia em tempo real, com atualizações a cada segundo para controle total.</p>
+                </a>
+
+                <a href="alertas.html" class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Alertas de Consumo</h3>
+                    <p>Configure alertas para ser notificado sobre picos de consumo ou anomalias no sistema.</p>
+                </a>
+
+                <a href="dicas.html" class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Dicas de Economia</h3>
+                    <p>Receba sugestões inteligentes para reduzir seu consumo e economizar na conta de energia.</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <h2 class="section-title">Dashboard</h2>
+            <div class="dashboard-content">
+                <div class="dashboard-cards">
+                    <div class="dashboard-card card-primary">
+                        <h3>Consumo Atual</h3>
+                        <div class="value">0.000133</div>
+                        <div class="unit">kWh/s</div>
+                    </div>
+                    <div class="dashboard-card card-secondary">
+                        <h3>Consumo Diário</h3>
+                        <div class="value">0.00</div>
+                        <div class="unit">kWh</div>
+                    </div>
+                    <div class="dashboard-card card-warning">
+                        <h3>Previsão Mensal</h3>
+                        <div class="value">0.00</div>
+                        <div class="unit">kWh</div>
+                    </div>
+                    <div class="dashboard-card card-danger">
+                        <h3>Custo Estimado</h3>
+                        <div class="value">R$ <span class="valor">0.00</span></div>
+                        <div class="unit">Durante o mês</div>
+                    </div>
+                </div>
+                
+                <div class="graph-container">
+                    <canvas id="graficoConsumoDiario"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre EnergiaIoT</h3>
+                    <p>Projeto em prol de uma matéria extencionista.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#funcionalidades">Funcionalidades</a></li>
+                        <li><a href="#dashboard">Dashboard</a></li>
+                        <li><a href="https://wa.me/5581981828482?text=Olá!%20Já%20estou%20utilizando%20o%20dispositivo%20EnergiaIoT%20e%20preciso%20de%20suporte%20relacionado%20ao%20monitoramento%20do%20consumo%20no%20site." target="_blank">
+    Suporte
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link do JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

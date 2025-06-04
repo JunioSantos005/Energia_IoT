@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertas de Consumo - EnergiaIoT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #00cc99;
+            --dark-color: #333;
+            --light-color: #f4f4f4;
+            --danger-color: #ff3860;
+            --warning-color: #ffdd57;
+            --success-color: #28a745;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0066cc, #2ed573);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .page-header {
+            background: #555;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .alerts-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+        }
+
+        .alerts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .alert-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid var(--danger-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .alert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .alert-card.warning {
+            border-left-color: var(--warning-color);
+        }
+
+        .alert-card.success {
+            border-left-color: var(--success-color);
+        }
+
+        .alert-card.info {
+            border-left-color: var(--primary-color);
+        }
+
+        .alert-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .alert-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .alert-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .alert-time {
+            font-size: 0.9rem;
+            color: #666;
+            background: #f1f3f4;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-left: auto;
+        }
+
+        .alert-message {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .alert-status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .status-active {
+            background: var(--danger-color);
+        }
+
+        .status-warning {
+            background: var(--warning-color);
+            color: var(--dark-color);
+        }
+
+        .status-resolved {
+            background: var(--success-color);
+        }
+
+        .status-info {
+            background: var(--primary-color);
+        }
+
+        .statistics {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .info-panel {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .info-panel h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .info-panel p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .alerts-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span>EnergiaIoT</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="#alertas">Alertas</a></li>
+                    <li><a href="dicas.html">Dicas</a></li>
+                    <li><a href="https://wa.me/5581981828482?text=Olá!%20Já%20estou%20utilizando%20o%20dispositivo%20EnergiaIoT%20e%20preciso%20de%20suporte%20relacionado%20ao%20monitoramento%20do%20consumo%20no%20site." target="_blank">
+Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>🔔 Alertas de Consumo</h1>
+            <p>Monitore e controle seu consumo de energia com alertas inteligentes em tempo real</p>
+        </div>
+    </section>
+
+    <section class="alerts-section" id="alertas">
+        <div class="container">
+            <h2 class="section-title">Alertas Ativos</h2>
+
+            <div class="alerts-grid">
+                <div class="alert-card">
+                    <div class="alert-header">
+                        <span class="alert-icon">🔴</span>
+                        <div>
+                            <div class="alert-title">Consumo Crítico</div>
+                            <div class="alert-time">há 2 minutos</div>
+                        </div>
+                    </div>
+                    <div class="alert-message">
+                        Seu consumo atual está 25% acima do limite estabelecido. Recomendamos verificar aparelhos de alto consumo como ar-condicionado, chuveiro elétrico e forno.
+                    </div>
+                    <span class="alert-status status-active">ATIVO</span>
+                </div>
+
+                <div class="alert-card warning">
+                    <div class="alert-header">
+                        <span class="alert-icon">⚠</span>
+                        <div>
+                            <div class="alert-title">Horário de Pico</div>
+                            <div class="alert-time">há 15 minutos</div>
+                        </div>
+                    </div>
+                    <div class="alert-message">
+                        Detectado aumento de 40% no consumo durante horário de pico (18h-21h). Considere postergar o uso de aparelhos não essenciais.
+                    </div>
+                    <span class="alert-status status-warning">AVISO</span>
+                </div>
+
+                <div class="alert-card info">
+                    <div class="alert-header">
+                        <span class="alert-icon">💡</span>
+                        <div>
+                            <div class="alert-title">Aparelho em Standby</div>
+                            <div class="alert-time">há 45 minutos</div>
+                        </div>
+                    </div>
+                    <div class="alert-message">
+                        Identificado consumo fantasma de aproximadamente 50W. Verifique aparelhos eletrônicos que podem estar em modo standby desnecessariamente.
+                    </div>
+                    <span class="alert-status status-info">INFORMAÇÃO</span>
+                </div>
+
+                <div class="alert-card success">
+                    <div class="alert-header">
+                        <span class="alert-icon">✅</span>
+                        <div>
+                            <div class="alert-title">Meta Atingida</div>
+                            <div class="alert-time">há 1 hora</div>
+                        </div>
+                    </div>
+                    <div class="alert-message">
+                        Parabéns! Você conseguiu manter o consumo 15% abaixo da meta diária. Continue assim para uma economia significativa no final do mês.
+                    </div>
+                    <span class="alert-status status-resolved">RESOLVIDO</span>
+                </div>
+
+            <div class="statistics">
+                <h3 class="stats-title">📊 Estatísticas dos Alertas</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Alertas Hoje</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Alertas Ativos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Taxa de Resolução</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">R$ 127</div>
+                        <div class="stat-label">Economia Estimada</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <h3>🎯 Como Funcionam os Alertas</h3>
+                <p>
+                    O sistema monitora seu consumo todos os dias e envia alertas inteligentes baseados em padrões de uso, 
+                    limites personalizados e condições ambientais. Cada alerta inclui sugestões práticas para otimizar 
+                    seu consumo e reduzir custos na conta de energia.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #333; color: white; text-align: center; padding: 20px 0;">
+        <div class="container">
+            <p>&copy; 2025 EnergiaIoT. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>
