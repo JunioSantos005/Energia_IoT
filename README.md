@@ -37,16 +37,6 @@ O projeto é composto por duas partes independentes:
 
 ## 📷 Demonstração
 
-<p align="center">
-  <img src="img/demonstracao.png/1.png" width="300"/>
-  <img src="img/demonstracao.png/2.png" width="300"/>
-  <img src="img/demonstracao.png/3.png" width="300"/>
-  <img src="img/demonstracao.png/4.png" width="300"/>
-  <img src="img/demonstracao.png/5.png" width="300"/>
-  <img src="img/demonstracao.png/6.png" width="300"/>
-  <img src="img/demonstracao.png/7.png" width="300"/>
-</p>
-
 ![Demontração do projeto](img/demonstracao.png/1.png)
 ![Demontração do projeto](img/demonstracao.png/2.png)
 ![Demontração do projeto](img/demonstracao.png/3.png)
