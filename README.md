@@ -35,6 +35,12 @@ O projeto é composto por duas partes independentes:
 
 > ⚠ A integração entre hardware e web não foi realizada devido à limitação do ambiente Wokwi, mas está prevista na arquitetura do projeto.
 
+## 🔗 Links do Projeto
+
+💻 Interface Web: https://projetoiotjuninn.netlify.app/
+
+⚙ Simulação no Wokwi: https://wokwi.com/projects/432855713033907201
+
 ## 📷 Demonstração
 
 ![Demontração do projeto](img/demonstracao.png/1.png)
