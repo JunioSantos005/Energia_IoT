@@ -212,6 +212,6 @@ function atualizarSimulacao() {
   calendarioSimulado.avancar(minutosPorSegundo);
 }
 
-// Inicializa e executa a cada 5 segundo
+// Inicializa e executa a cada 7 segundo
 atualizarSimulacao();
-setInterval(atualizarSimulacao, 5000);
+setInterval(atualizarSimulacao, 7000);
